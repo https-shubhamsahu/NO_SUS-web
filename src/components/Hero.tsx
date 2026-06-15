@@ -70,7 +70,7 @@ function usePdfGhosts(phase: number): PdfGhost[] {
       y: rand.range(-10, 110),
       scale: rand.range(0.3, 1.1),
       rot: rand.range(-15, 15),
-      opacity: rand.range(0.04, 0.18),
+      opacity: rand.range(0.12, 0.4),
     }));
   }, [phase]);
 }

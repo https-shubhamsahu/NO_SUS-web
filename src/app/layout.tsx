@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { Navbar } from "@/components/Navbar";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -27,9 +31,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="antialiased"
+      className={`${inter.className} antialiased`}
     >
       <body>
+        <Navbar />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
