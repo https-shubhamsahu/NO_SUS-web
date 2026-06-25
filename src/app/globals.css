@@ -57,3 +57,20 @@ body {
   50% { top: 100%; }
   100% { top: 0%; }
 }
+
+@keyframes scroll-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+.animate-marquee-scroll {
+  display: flex;
+  gap: 4rem;
+  width: max-content;
+  animation: scroll-marquee 25s linear infinite;
+}
+
+.animate-marquee-scroll:hover {
+  animation-play-state: paused;
+}
+

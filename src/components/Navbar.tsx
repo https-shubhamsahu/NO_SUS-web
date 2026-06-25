@@ -2,15 +2,27 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleLogoClick = () => {
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
+    }
+  };
 
   return (
     <motion.nav
@@ -25,19 +37,39 @@ export function Navbar() {
         {/* Logo */}
         <div 
           className="font-black text-xl tracking-tighter text-white cursor-pointer select-none"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={handleLogoClick}
         >
           NO SUS<span className="text-zinc-500">.</span>
         </div>
 
         {/* Action button */}
-        <button
-          onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
-          className="font-mono text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
-        >
-          [ Join Alpha ]
-        </button>
+        <div className="flex items-center gap-6">
+          {pathname === "/" ? (
+            <>
+              <button
+                onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
+                className="font-mono text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              >
+                [ Waitlist ]
+              </button>
+              <Link
+                href="/alpha-testers"
+                className="font-mono text-xs uppercase tracking-widest text-white border border-white/20 px-3 py-1.5 hover:border-white hover:bg-white hover:text-black transition-all rounded-sm"
+              >
+                [ Alpha Program ]
+              </Link>
+            </>
+          ) : (
+            <Link
+              href="/"
+              className="font-mono text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+            >
+              [ Back to Home ]
+            </Link>
+          )}
+        </div>
       </div>
     </motion.nav>
   );
 }
+
