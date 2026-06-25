@@ -46,12 +46,6 @@ export function Navbar() {
         <div className="flex items-center gap-6">
           {pathname === "/" ? (
             <>
-              <button
-                onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
-                className="font-mono text-xs uppercase tracking-widest text-zinc-400 hover:text-white transition-colors cursor-pointer"
-              >
-                [ Waitlist ]
-              </button>
               <Link
                 href="/alpha-testers"
                 className="font-mono text-xs uppercase tracking-widest text-white border border-white/20 px-3 py-1.5 hover:border-white hover:bg-white hover:text-black transition-all rounded-sm"
